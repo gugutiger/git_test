@@ -6,4 +6,10 @@ This is test first commit
 
 This is test second commit
 
+
+This is master and test conflict test
+
+This is test two
+
 This is test second commit conflict test
+
