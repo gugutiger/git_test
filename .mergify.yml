@@ -5,13 +5,10 @@ queue_rules:
 pull_request_rules:
   - name: Automatic merge on approval
     conditions:
-      - base=main
+      - base=master
       - "#approved-reviews-by>=1"
       - "check-success=SCA Test on CentOS/x64"
-      - "check-success=UT Test on CentOS/x64"
-      - "check-success=BVT Test on CentOS/x64"
-      - "check-success=BVT RACE Test on CentOS/x64"
-      - "check-success=Lint Docs"
     actions:
       queue:
         name: default
+        method: squash
