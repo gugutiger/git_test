@@ -14,3 +14,53 @@ pull_request_rules:
       queue:
         name: default
         method: squash
+  - name: label for Bug
+    conditions: 
+      - body~=(?m)- \[(?i)x\] BUG
+    actions:
+      label:
+        add:
+          - kind/bug
+  - name: label for Feature
+    conditions: 
+      - body~=(?m)- \[(?i)x\] Feature
+    actions:
+      label:
+        add:
+          - kind/feature
+  - name: label for Improvement
+    conditions: 
+      - body~=(?m)- \[(?i)x\] Improvement
+    actions:
+      label:
+        add:
+          - kind/feature
+  - name: label for Documentation
+    conditions: 
+      - body~=(?m)- \[(?i)x\] Documentation
+    actions:
+      label:
+        add:
+          - kind/feature
+  - name: label for Test and CI
+    conditions: 
+      - body~=(?m)- \[(?i)x\] Test and CI
+    actions:
+      label:
+        add:
+          - kind/feature
+  - name: label for Code Refactoring
+    conditions: 
+      - body~=(?m)- \[(?i)x\] Code Refactoring
+    actions:
+      label:
+        add:
+          - kind/feature
+  - name: label for API-change
+    conditions: 
+      - body~=(?m)- \[(?i)x\] API-change
+    actions:
+      label:
+        add:
+          - kind/feature
+
