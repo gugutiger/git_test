@@ -6,7 +6,6 @@ pull_request_rules:
   - name: Automatic merge on approval
     conditions:
       - base=master
-      - locked=false
       - "#approved-reviews-by>=1"
       - "check-success=SCA Test on CentOS/x64"
       - check-success="UT Test on CentOS/x64"
