@@ -25,5 +25,5 @@ jobs:
     steps:
       - uses: guguducken/ut-pr-action@master
         with:
-          GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+          github-token: ${{ secrets.ACTION_TOKEN }}
 
