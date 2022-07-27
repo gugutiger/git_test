@@ -24,6 +24,4 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: guguducken/ut-pr-action@master
-        with:
-          github-token: ${{ secrets.ACTION_TOKEN }}
 
