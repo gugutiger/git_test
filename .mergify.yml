@@ -1,13 +1,35 @@
 queue_rules:
   - name: default
-    conditions: []  # no extra conditions needed to get merged
+    conditions: 
+      - "#approved-reviews-by>=1"
+      - "#changes-requested-reviews-by<=0"
+      - "#review-requested>=1"
+      - "check-success=Lint Docs"
+      - "check-success=UT Test on Ubuntu/x64"
+      - "check-success=UT Test on Darwin/x86"
+      - "check-success=UT Test on Linux/Arm"
+      - "check-success=BVT Test on Ubuntu/x64"
+      - "check-success=BVT Test on Linux/Arm"
+      - "check-success=BVT Test on Darwin/x86"
+      - "check-success=BVT RACE Test on CentOS/x64"
+      - "check-success=SCA Test on Ubuntu/x64"
 
 pull_request_rules:
   - name: Automatic merge on approval
     conditions:
-      - base=master
       - "#approved-reviews-by>=1"
-      - "check-success=SCA Test on CentOS/x64"
+      - "#changes-requested-reviews-by<=0"
+      - "#review-requested>=1"
+      - "check-success=Lint Docs"
+      - "check-success=UT Test on Ubuntu/x64"
+      - "check-success=UT Test on Darwin/x86"
+      - "check-success=UT Test on Linux/Arm"
+      - "check-success=BVT Test on Ubuntu/x64"
+      - "check-success=BVT Test on Linux/Arm"
+      - "check-success=BVT Test on Darwin/x86"
+      - "check-success=BVT RACE Test on CentOS/x64"
+      - "check-success=SCA Test on Ubuntu/x64"
+      
     actions:
       queue:
         name: default
@@ -32,33 +54,32 @@ pull_request_rules:
     actions:
       label:
         add:
-          - kind/feature
+          - kind/enhancement
   - name: label for Documentation
     conditions: 
       - body~=(?m)- \[(?i)x\] Documentation
     actions:
       label:
         add:
-          - kind/feature
+          - kind/documentation
   - name: label for Test and CI
     conditions: 
       - body~=(?m)- \[(?i)x\] Test and CI
     actions:
       label:
         add:
-          - kind/feature
+          - kind/test
   - name: label for Code Refactoring
     conditions: 
       - body~=(?m)- \[(?i)x\] Code Refactoring
     actions:
       label:
         add:
-          - kind/feature
+          - kind/refactor
   - name: label for API-change
     conditions: 
       - body~=(?m)- \[(?i)x\] API-change
     actions:
       label:
         add:
-          - kind/feature
-
+          - kind/api-change
