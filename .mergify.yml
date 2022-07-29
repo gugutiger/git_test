@@ -3,7 +3,6 @@ queue_rules:
     conditions: 
       - "#approved-reviews-by>=1"
       - "#changes-requested-reviews-by<=0"
-      - "#review-requested>=1"
       - "check-success=SCA Test on CentOS/x64"
 
 pull_request_rules:
