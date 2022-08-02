@@ -1,6 +1,6 @@
 queue_rules:
   - name: default
-    conditions: 
+    conditions:
       - "#approved-reviews-by>=1"
       - "#changes-requested-reviews-by<=0"
       - "check-success=SCA Test on CentOS/x64"
@@ -11,55 +11,57 @@ pull_request_rules:
       - "#changes-requested-reviews-by<=0"
       - "#review-requested>=1"
       - "check-success=SCA Test on CentOS/x64"
-      
+
     actions:
       queue:
         name: default
         method: squash
+        commit_message_template: |
+          @{{ commits }}
   - name: label for Bug
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] BUG
     actions:
       label:
         add:
           - kind/bug
   - name: label for Feature
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] Feature
     actions:
       label:
         add:
           - kind/feature
   - name: label for Improvement
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] Improvement
     actions:
       label:
         add:
           - kind/enhancement
   - name: label for Documentation
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] Documentation
     actions:
       label:
         add:
           - kind/documentation
   - name: label for Test and CI
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] Test and CI
     actions:
       label:
         add:
           - kind/test
   - name: label for Code Refactoring
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] Code Refactoring
     actions:
       label:
         add:
           - kind/refactor
   - name: label for API-change
-    conditions: 
+    conditions:
       - body~=(?m)- \[(?i)x\] API-change
     actions:
       label:
