@@ -17,7 +17,7 @@ pull_request_rules:
         name: default
         method: squash
         commit_message_template: |
-          @{{ body_raw }}
+          @{{ commits }}
   - name: label for Bug
     conditions: 
       - body~=(?m)- \[(?i)x\] BUG
