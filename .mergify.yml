@@ -1,15 +1,12 @@
 queue_rules:
   - name: default
-    conditions:
-      - "#approved-reviews-by>=1"
-      - "#changes-requested-reviews-by<=0"
-      - "check-success=SCA Test on CentOS/x64"
+    conditions: []
+    checks_timeout: 30m
 
 pull_request_rules:
   - name: Automatic merge on approval
     conditions:
-      - "#changes-requested-reviews-by<=0"
-      - "#review-requested>=1"
+      - "#approved-reviews-by>=1"
       - "check-success=SCA Test on CentOS/x64"
 
     actions:
@@ -18,8 +15,16 @@ pull_request_rules:
         method: squash
         commit_message_template: |
           {{ title }}(#{{ number }})
+          
+          {{ body | get_section("## **What this PR does / why we need it:**") }}
 
           Approved by: @{{ approved_reviews_by | join(', @') }}
+          
+  - name: auto update branch
+    conditions:
+      - created-at>=00:10 ago
+    actions:
+      update: 
   - name: label for Bug
     conditions:
       - body~=(?m)- \[(?i)x\] BUG
