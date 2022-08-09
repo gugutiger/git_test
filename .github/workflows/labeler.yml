@@ -22,3 +22,5 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: guguducken/label-size-action@master
+        with:
+          size_token: ${{ secrets.ACTION_TOKEN}}
