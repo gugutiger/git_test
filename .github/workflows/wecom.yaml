@@ -1,0 +1,13 @@
+name: WeCom Auto Notice
+on:
+  issues:
+    types: [opened, assigned]
+
+jobs:
+  issue-notify:
+    if: github.event_name == 'issues' && github.event.action == 'assigned'
+    runs-on: ubuntu-latest
+    steps:
+      - name: ISSUE Triggered
+        run: |
+          echo content: "New Issue Opened or Assigned: [${{ github.event.issue.title }}](${{ github.event.issue.html_url }})\nAssignees:<font color=\"warning\">${{ join(github.event.issue.assignees.*.login, ', ') }}</font>\nOpen Issue Number: <font color=\"warning\">${{ github.event.repository.open_issues }}</font>"
