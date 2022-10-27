@@ -2,8 +2,9 @@
 name: continuous-regression
 
 on:
-  check_run:
-    types: [created,rerequested, completed]
+  pull_request: 
+    types:
+      - ready_for_review
 
   workflow_dispatch:
   
