@@ -2,11 +2,8 @@
 name: continuous-regression
 
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  check_run:
+    types: [created,rerequested, completed]
 
   workflow_dispatch:
   
@@ -19,35 +16,5 @@ jobs:
     
     steps:
       - name: checkout head
-        uses: actions/checkout@v2
-        with:
-          path: ./head
-          repository: matrixorigin/matrixone
-          ref: main
-      
-      - name: Set up Go
-        uses: ./head/.github/actions/setup_env
-
-      - name: Build MatrixOne
         run: |
-          cd $GITHUB_WORKSPACE/head && make clean && make debug
-          git rev-parse --short HEAD
-          
-      - name: Start MO
-        run: |
-          cd $GITHUB_WORKSPACE/head
-          ./mo-service -launch ./etc/launch-tae-logservice/launch.toml &>mo-service.log &
-          
-      - name: Clone mo-tester repository
-        uses: actions/checkout@v2
-        with:
-          repository: matrixorigin/mo-tester
-          path: ./mo-tester
-          ref: main
-      
-      - name: Clone mo-tpch repository
-        uses: actions/checkout@v2
-        with:
-          repository: aressu1985/mo-tpch
-          path: ./mo-tpch
-          ref: main
+          echo ${{ github.event.pull_request.head.repo.full_name}}/${{ github.event.pull_request.head.ref }}/${{ github.workflow }} 
