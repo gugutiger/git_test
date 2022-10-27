@@ -1,6 +1,7 @@
 queue_rules:
   - name: default
-    conditions: []
+    conditions: 
+      - "check-success=continuous-regression"
     checks_timeout: 30m
 
 pull_request_rules:
@@ -20,11 +21,6 @@ pull_request_rules:
 
           Approved by: @{{ approved_reviews_by | join(', @') }}
           
-  - name: auto update branch
-    conditions:
-      - created-at>=00:10 ago
-    actions:
-      update: 
   - name: label for Bug
     conditions:
       - body~=(?m)- \[(?i)x\] BUG
