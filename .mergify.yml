@@ -1,6 +1,7 @@
 queue_rules:
   - name: default
-    conditions: []
+    conditions: 
+      - "check-success=continuous-regression"
     checks_timeout: 30m
 
 pull_request_rules:
@@ -19,12 +20,14 @@ pull_request_rules:
           {{ body | get_section("## **What this PR does / why we need it:**") }}
 
           Approved by: @{{ approved_reviews_by | join(', @') }}
-          
-  - name: auto update branch
+      edit:
+        draft: false
+  - name: Auto Draft
     conditions:
       - created-at>=00:10 ago
     actions:
-      update: 
+      edit:
+        draft: True
   - name: label for Bug
     conditions:
       - body~=(?m)- \[(?i)x\] BUG
