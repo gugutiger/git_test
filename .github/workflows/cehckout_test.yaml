@@ -10,7 +10,7 @@ on:
   
 
 jobs:
-  bvt-linux-x86:
+  continuous-regression:
     runs-on: ubuntu-latest
     name: BVT Test on Ubuntu/x64
     timeout-minutes: 30
