@@ -24,7 +24,7 @@ pull_request_rules:
         draft: false
   - name: Auto Draft
     conditions:
-      - created-at>=00:3 ago
+      - created-at>=00:03 ago
       - -draft
     actions:
       edit:
