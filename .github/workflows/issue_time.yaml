@@ -20,8 +20,8 @@ jobs:
       - uses: guguducken/issue-time-action@main
         with: 
           token_action: ${{ secrets.ACTION_TOKEN }}
-          error_time: "100 0 0 0 0"
-          warning_time: "50 0 0 0 0"
+          error_time: "365 0 0 0 0"
+          warning_time: "150 0 0 0 0"
           uri_warn: ${{ secrets.MATRIXONE_HOOK }}
           uri_error: ${{ secrets.MATRIXONE_HOOK }}
           label_check: "kind/bug"
