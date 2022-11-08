@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: guguducken/issue-time-action@notice_group
+      - uses: guguducken/issue-time-action@temp_no_modify
         with: 
           token_action: ${{ secrets.ACTION_TOKEN }}
           warning_time: "24 72 168"
